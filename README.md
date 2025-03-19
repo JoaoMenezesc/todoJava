@@ -26,11 +26,11 @@ Dentro do PostgreSQL:
 
 ```sql
 CREATE DATABASE todo_db;
-CREATE USER jovmd WITH PASSWORD '1991PG$#@';
-ALTER ROLE jovmd SET client_encoding TO 'utf8';
-ALTER ROLE jovmd SET default_transaction_isolation TO 'read committed';
-ALTER ROLE jovmd SET timezone TO 'UTC';
-GRANT ALL PRIVILEGES ON DATABASE todo_db TO jovmd;
+CREATE USER meu_usuario WITH PASSWORD 'minha_senha';
+ALTER ROLE meu_usuario SET client_encoding TO 'utf8';
+ALTER ROLE meu_usuario SET default_transaction_isolation TO 'read committed';
+ALTER ROLE meu_usuario SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE todo_db TO meu_usuario;
 \q
 ```
 
@@ -40,12 +40,19 @@ No arquivo `src/main/resources/application.properties`, adicione:
 
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/todo_db
-spring.datasource.username=jovmd
-spring.datasource.password=1991PG$#@
+spring.datasource.username=${DB_USERNAME}
+spring.datasource.password=${DB_PASSWORD}
 spring.datasource.driver-class-name=org.postgresql.Driver
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
+```
+
+**Nota:** Defina as credenciais como variáveis de ambiente para segurança:
+
+```sh
+export DB_USERNAME=meu_usuario
+export DB_PASSWORD=minha_senha
 ```
 
 ## 5. Verificar se a tabela foi criada
