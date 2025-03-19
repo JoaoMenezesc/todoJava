@@ -26,7 +26,7 @@ Dentro do PostgreSQL:
 
 ```sql
 CREATE DATABASE todo_db;
-CREATE USER jovmd WITH PASSWORD '1991P';
+CREATE USER jovmdG WITH PASSWORD '1269!';
 ALTER ROLE jovmd SET client_encoding TO 'utf8';
 ALTER ROLE jovmd SET default_transaction_isolation TO 'read committed';
 ALTER ROLE jovmd SET timezone TO 'UTC';
