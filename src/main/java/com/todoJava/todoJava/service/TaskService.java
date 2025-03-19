@@ -25,20 +25,19 @@ public class TaskService {
         return repository.findById(id).orElse(null);
     }
 
-    public Task saveTask(Task task) {
+    public Task createTask(Task task) {
         return repository.save(task);
     }
 
     public Task updateTask(Long id, Task task) {
-        return repository.findById(id)
-                .map(
+        return repository.findById(id).map(
                 existingTask -> {
                     existingTask.setTitle(task.getTitle());
                     existingTask.setCompleted(task.isCompleted());
                     return repository.save(existingTask);
+
                 }
-        ).orElseThrow(() -> new RuntimeException("Task not found"));
-    }
+        ).orElseThrow(() -> new RuntimeException("Task not found"));    }
 
     public void deleteTask(Long id) {
         repository.deleteById(id);
